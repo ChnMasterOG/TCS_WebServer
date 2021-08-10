@@ -1,7 +1,7 @@
 #ifndef _TIMER_H
 #define _TIMER_H
 
-#include "user.h"
+#include "../user.h"
 #include <map>
 #include <vector>
 #include <list>

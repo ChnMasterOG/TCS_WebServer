@@ -17,12 +17,12 @@
 
 #include <map>
 
-#include "httpconn.h"
+#include "httpconn/httpconn.h"
 #include "server.h"
-#include "timer.h"
+#include "timer/timer.h"
 #include "user.h"
-#include "threadpool.h"
-#include "mysqlconn.h"
+#include "threadpool/threadpool.h"
+#include "mysqlconn/mysqlconn.h"
 
 using namespace std;
 

@@ -16,8 +16,8 @@
 #include <errno.h>
 #include <fcntl.h>
 
-#include "user.h"
-#include "timer.h"
+#include "../user.h"
+#include "../timer/timer.h"
 
 #define _HTTP_200_and_KeepAlive "HTTP/1.1 200 OK\r\nconnection: keep-alive\r\n\r\n"
 #define _HTTP_200_and_Close "HTTP/1.1 200 OK\r\nconnection: close\r\n\r\n"

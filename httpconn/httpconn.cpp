@@ -1,8 +1,8 @@
 
-#include "httpconn.h"
-#include "server.h"
-#include "mysqlconn.h"
-#include "md5.h"
+#include "../httpconn/httpconn.h"
+#include "../server.h"
+#include "../mysqlconn/mysqlconn.h"
+#include "../md5/md5.h"
 
 extern mysql_conn mysqlconn;
 extern map<string, string> md5_username;
@@ -191,7 +191,7 @@ http_conn::HTTP_CODE http_conn::do_request()
     bool cookies_invalid = check_cookies(m_username);
     if (m_url == "/") {
         if (m_method == GET) {
-            strcpy(m_fp_buf, "log.html");
+            strcpy(m_fp_buf, "./resources/log.html");
             return NO_REQUEST;
         }
     }
@@ -224,12 +224,12 @@ http_conn::HTTP_CODE http_conn::do_request()
                     bool _is_clockin = 0;
                     if (mysqlconn.query_sql_IS_CLOCKIN(_username, _is_clockin)) return BAD_REQUEST;
                     else {
-                        if (!_is_clockin) strcpy(m_fp_buf, "platform_a.html");
-                        else strcpy(m_fp_buf, "platform_b.html");
+                        if (!_is_clockin) strcpy(m_fp_buf, "./resources/platform_a.html");
+                        else strcpy(m_fp_buf, "./resources/platform_b.html");
                         m_md5_flag = 1;
                     }
                 }
-                else strcpy(m_fp_buf, "logError.html");
+                else strcpy(m_fp_buf, "./resources/logError.html");
             }
             return NO_REQUEST;
         }
@@ -240,7 +240,7 @@ http_conn::HTTP_CODE http_conn::do_request()
             bool _is_clockin = 0;
             if (mysqlconn.query_sql_IS_CLOCKIN(m_username, _is_clockin)) return BAD_REQUEST;
             else {
-                if (_is_clockin) strcpy(m_fp_buf, "platform_b.html");
+                if (_is_clockin) strcpy(m_fp_buf, "./resources/platform_b.html");
                 else {
                     clock_in_info m_info;
                     string _sex;
@@ -253,7 +253,7 @@ http_conn::HTTP_CODE http_conn::do_request()
                     p = search_configuration(p, "temperature=", _temperature);
                     m_info.temperature = stoi(_temperature);
                     if (mysqlconn.query_sql_CLOCKIN(m_info)) return BAD_REQUEST;
-                    strcpy(m_fp_buf, "platform_c.html");
+                    strcpy(m_fp_buf, "./resources/platform_c.html");
                 }
             }
             return NO_REQUEST;
@@ -261,7 +261,7 @@ http_conn::HTTP_CODE http_conn::do_request()
     }
     else if (m_url == "/platform_d") {
         if (m_method == POST) {
-            strcpy(m_fp_buf, "platform_d.html");
+            strcpy(m_fp_buf, "./resources/platform_d.html");
             m_table.clear();
             if (mysqlconn.query_sql_TABLE(m_username, m_table)) return BAD_REQUEST;
             else m_table_flag = 1;

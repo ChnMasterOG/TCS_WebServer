@@ -5,7 +5,7 @@
 #include <iostream>
 
 #include "timer.h"
-#include "server.h"
+#include "../server.h"
 
 using namespace std;
 
