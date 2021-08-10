@@ -7,7 +7,7 @@
 
 #define SQL_HOST "localhost"
 #define SQL_USERNAME "root"
-#define SQL_PASSWORD "KE.yan_418"
+#define SQL_PASSWORD "root"
 #define SQL_DATABASE "WebServer"
 #define SQL_PORT 3306
 
